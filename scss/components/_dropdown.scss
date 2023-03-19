@@ -93,19 +93,31 @@ details[role="list"] {
           var(--border-width) * 2
       );
       padding: var(--form-element-spacing-vertical)
+        calc(var(--form-element-spacing-horizontal) * 1.5)
+        var(--form-element-spacing-vertical)
         var(--form-element-spacing-horizontal);
+
+      overflow: hidden;
       border: var(--border-width) solid var(--form-element-border-color);
       border-radius: var(--border-radius);
       background-color: var(--form-element-background-color);
       color: var(--form-element-placeholder-color);
       line-height: inherit;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       cursor: pointer;
-
+      
       @if $enable-transitions {
         transition: background-color var(--transition),
           border-color var(--transition), color var(--transition),
           box-shadow var(--transition);
       }
+
+      &::after {
+        position: absolute;
+        top: calc(50% - 1rem * var(--line-height) /2);
+        right: var(--form-element-spacing-horizontal);
+      } 
 
       &:active,
       &:focus {
