@@ -2069,14 +2069,22 @@ details[role=list] summary {
 }
 details[role=list] summary:not([role]) {
   height: calc(1rem * var(--line-height) + var(--form-element-spacing-vertical) * 2 + var(--border-width) * 2);
-  padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
+  padding: var(--form-element-spacing-vertical) calc(var(--form-element-spacing-horizontal) * 1.5) var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
+  overflow: hidden;
   border: var(--border-width) solid var(--form-element-border-color);
   border-radius: var(--border-radius);
   background-color: var(--form-element-background-color);
   color: var(--form-element-placeholder-color);
   line-height: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   cursor: pointer;
   transition: background-color var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+details[role=list] summary:not([role])::after {
+  position: absolute;
+  top: calc(50% - 1rem * var(--line-height) / 2);
+  right: var(--form-element-spacing-horizontal);
 }
 details[role=list] summary:not([role]):active, details[role=list] summary:not([role]):focus {
   border-color: var(--form-element-active-border-color);
